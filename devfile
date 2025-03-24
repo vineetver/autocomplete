@@ -1,0 +1,25 @@
+schemaVersion: 2.2.0
+metadata:
+  name: python-elasticsearch-api
+projects:
+  - name: python-elasticsearch-api
+    source:
+      type: git
+      location: "https://github.com/your-repo/python-elasticsearch-api.git"
+components:
+  - name: python
+    container:
+      image: registry.access.redhat.com/ubi8/python-39:latest
+      memoryLimit: 512Mi
+      mountSources: true
+      endpoints:
+        - name: http
+          targetPort: 5000
+commands:
+  - id: run
+    exec:
+      component: python
+      commandLine: "python app.py"
+      workingDir: /projects/python-elasticsearch-api
+      group:
+        isDefault: true
